@@ -1,0 +1,35 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:base"],
+    "dependencyDashboard": false,
+    "vulnerabilityAlerts": {
+        "labels": ["security"]
+    },
+    "packageRules": [
+        {
+            "matchManagers": ["github-actions"],
+            "groupName": "github-actions-dependencies",
+            "automerge": true,
+            "schedule": ["on the first day of the month"]
+        },
+        {
+            "matchPackagePatterns": ["node"],
+            "groupName": "node",
+            "automerge": true,
+            "schedule": ["on the first day of the month"]
+        },
+        {
+            "matchPackagePatterns": ["pnpm"],
+            "matchUpdateTypes": ["minor"],
+            "groupName": "pnpm",
+            "automerge": true,
+            "schedule": ["on the first day of the month"]
+        },
+        {
+            "matchUpdateTypes": ["minor", "patch"],
+            "groupName": "minor and patches",
+            "automerge": true,
+            "schedule": ["on Monday"]
+        }
+    ]
+}
