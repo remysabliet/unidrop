@@ -21,7 +21,7 @@ export default defineProject({
         replacement: path.resolve(__dirname, './src/server'),
       },
       {
-        find: /^assets\/.+\.svg$/,
+        find: /^assets\/.+\.svg(\?react)?$/,
         replacement: path.resolve(__dirname, './src/client/__mocks__/svg.tsx'),
       },
     ],

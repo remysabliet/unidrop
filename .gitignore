@@ -23,6 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .editorconfig
+.vscode
 
 uploads
 !uploads/.gitkeep
@@ -31,7 +32,7 @@ uploads-chunks
 src/server/test/uploads
 src/server/test/uploads-chunks
 
-.env.local
+.env
 .env.test
 
 

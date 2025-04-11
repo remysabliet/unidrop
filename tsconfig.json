@@ -28,6 +28,6 @@
             "T/*": ["./src/types/*"]
         }
     },
-    "include": ["src/client"],
+    "include": ["src/client","src/server"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

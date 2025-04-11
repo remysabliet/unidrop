@@ -2,9 +2,35 @@
 
 This is a simple boilerplate for the frontend task. You are free to use it and modify it to your needs.
 
+## Room for Improvements (Rémy SABLIET)
+
+- Enhance the UploadFile component design by adding a circular progress indicator that visually wraps around the entire component and fills according to the upload progress.
+
+- Add a "Cancel Upload" button to allow users to interrupt an ongoing upload.
+
+- Improve error handling:
+
+    - Clearly differentiate between network errors, server-side errors, and chunk merge errors.
+
+    - Display helpful messages to users.
+
+- Implement an upload timeout mechanism for uploads taking too long (based on requirements).
+
+- Add file extension validation to prevent unsupported formats.
+
+- Automatically sanitize filenames to prevent unsafe or invalid file names.
+
+- On the server side, implement:
+
+    - More robust error handling
+
+    - File validation: filename sanitization, antivirus scanning, max file size check, etc.
+
+- Add end to end test (Cypress)
+
 ## Installation
 
-Copy the `.env.template` file and rename it to `.env.local` for development purposes.
+Copy the `.env.template` file and rename it to `.env` for development purposes.
 
 ```bash
 pnpm install
@@ -64,3 +90,4 @@ The boilerplate provides Tailwind CSS by default. If you want to use something e
 ## Testing
 
 Vitest is provided by default for testing, however you are free to use whatever you like and are familiar with.
+

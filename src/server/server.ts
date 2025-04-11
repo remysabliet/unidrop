@@ -29,9 +29,7 @@ const mergeChunks = async (fileName: string, totalChunks: number) => {
 
     const writeStream = createWriteStream(`${UPLOAD_DIR}/${fileName}`);
     for (let i = 0; i < totalChunks; i++) {
-        console.log("Writting chunk", i);
         const chunkFilePath = `${CHUNK_DIR}/${fileName}.part_${i}`;
-        console.log("Reading chunk", chunkFilePath);
         const chunkBuffer = await readFile(chunkFilePath);
         writeStream.write(chunkBuffer);
         unlinkSync(chunkFilePath);
@@ -91,9 +89,7 @@ app.post(
         try {
             await pipeline(req.file.stream, createWriteStream(chunkFilePath));
 
-            console.log('currentChunkIndex', currentChunkIndex, 'totalChunks', totalChunks);
             if (currentChunkIndex === totalChunks - 1) {
-                console.log('Merging chunks');
                 // If this is the last chunk, merge all chunks into a single file
                 await mergeChunks(fileName, totalChunks);
             }
