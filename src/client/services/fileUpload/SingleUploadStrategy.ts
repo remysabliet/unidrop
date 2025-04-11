@@ -1,4 +1,4 @@
-import type { UploadResponse } from 'C/types';
+import type { FileItem } from 'C/types';
 
 import type { ProgressCallback, UploadStrategy } from "./fileUploadTypes";
 
@@ -8,7 +8,7 @@ import type { ProgressCallback, UploadStrategy } from "./fileUploadTypes";
 export class SingleUploadStrategy implements UploadStrategy {
   constructor(private readonly uploadUrl: string) { }
 
-  public upload(file: File, onProgress?: ProgressCallback): Promise<UploadResponse> {
+  public upload(file: File, onProgress?: ProgressCallback): Promise<FileItem> {
     return new Promise((resolve, reject) => {
       try {
         const xhr = new XMLHttpRequest();
@@ -24,7 +24,7 @@ export class SingleUploadStrategy implements UploadStrategy {
         xhr.onload = () => {
           if (xhr.status === 200) {
             try {
-              const responseData: UploadResponse = JSON.parse(xhr.responseText);
+              const responseData: FileItem = JSON.parse(xhr.responseText);
               resolve(responseData);
             } catch (parseError) {
               reject(new Error('Failed to parse server response'));

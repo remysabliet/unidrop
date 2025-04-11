@@ -1,4 +1,4 @@
-import type { UploadResponse } from 'C/types';
+import type { FileItem } from 'C/types';
 import type { ProgressCallback, UploadStrategy } from "./fileUploadTypes";
 
 /**
@@ -12,7 +12,7 @@ export class ParallelChunkedUploadStrategy implements UploadStrategy {
     private readonly parallelLimit: number = 3
   ) { }
 
-  public async upload(file: File, onProgress?: ProgressCallback): Promise<UploadResponse> {
+  public async upload(file: File, onProgress?: ProgressCallback): Promise<FileItem> {
     const totalChunks = Math.ceil(file.size / this.chunkSize);
     const progressArray = new Array<number>(totalChunks).fill(0);
 
@@ -27,14 +27,14 @@ export class ParallelChunkedUploadStrategy implements UploadStrategy {
     };
 
     // Create a task for each chunk.
-    const tasks: Array<() => Promise<UploadResponse>> = [];
+    const tasks: Array<() => Promise<FileItem>> = [];
     for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
       tasks.push(() => {
         const start = chunkIndex * this.chunkSize;
         const end = Math.min(file.size, start + this.chunkSize);
         const chunk = file.slice(start, end);
 
-        return new Promise<UploadResponse>((resolve, reject) => {
+        return new Promise<FileItem>((resolve, reject) => {
           try {
             const xhr = new XMLHttpRequest();
             xhr.open('POST', this.uploadUrl);
@@ -49,7 +49,7 @@ export class ParallelChunkedUploadStrategy implements UploadStrategy {
             xhr.onload = () => {
               if (xhr.status === 200) {
                 try {
-                  const responseData: UploadResponse = JSON.parse(xhr.responseText);
+                  const responseData: FileItem = JSON.parse(xhr.responseText);
                   resolve(responseData);
                 } catch (parseError) {
                   reject(new Error('Failed to parse server response on chunk upload'));

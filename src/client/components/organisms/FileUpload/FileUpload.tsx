@@ -2,8 +2,6 @@ import * as React from "react";
 
 import { Button, ErrorMessage } from "C/components/atoms";
 
-import type { UploadResponse } from "C/types/api";
-
 import useFileUploader from "C/hooks/useFileUploader";
 
 import { cn } from "C/utils";
@@ -14,11 +12,7 @@ export interface FileUploadProps {
   maxAllowedFiles?: number;
   acceptedFileTypes?: string; // Comma-separated list of allowed file types
   maxTotalSize?: number; // in bytes
-  /**
-   * Callback invoked when upload is complete.
-   * Returns an array of upload responses from the upload service.
-   */
-  onUploadComplete?: (files: UploadResponse[]) => void;
+  onUploadComplete?: () => void;
   renderErrorMessage?: (error: string) => React.ReactNode;
   renderUploadButton?: () => React.ReactNode;
 }

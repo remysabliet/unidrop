@@ -1,4 +1,4 @@
-import type { UploadResponse } from 'C/types';
+import type { FetchFilesResponse } from 'C/types';
 import type { UploadStrategy, ProgressCallback } from '.';
 
 import { SingleUploadStrategy } from './SingleUploadStrategy'
@@ -20,7 +20,7 @@ export class FileService {
     this.singleThreshold = singleThreshold;
   }
 
-  public uploadFile(file: File, onProgress?: ProgressCallback): Promise<UploadResponse> {
+  public uploadFile(file: File, onProgress?: ProgressCallback): Promise<any> {
     if (file.size > this.singleThreshold) {
       return this.chunkStrategy.upload(file, onProgress);
     } else {
@@ -28,13 +28,13 @@ export class FileService {
     }
   }
 
-  public async getUploadedFiles(): Promise<UploadResponse[]> {
+  public async getUploadedFiles(): Promise<FetchFilesResponse> {
     try {
       const response = await fetch(this.fileListUrl);
       if (!response.ok) {
         throw new Error(`Error fetching files: ${response.statusText}`);
       }
-      return (await response.json()) as UploadResponse[];
+      return (await response.json()) as FetchFilesResponse;
     } catch (error) {
       throw new Error(
         error instanceof Error

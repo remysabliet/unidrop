@@ -1,4 +1,10 @@
-export interface UploadResponse {
-  name: string;
-  [key: string]: any;
+import type { FileItem } from 'C/types/file';
+
+export interface FetchFilesResponse {
+  files: FileItem[];
 }
+
+export interface UploadedFileResponse {
+  message: string;
+}
+

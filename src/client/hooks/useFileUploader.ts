@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-import type { UploadResponse } from 'C/types/api';
+import type { UploadedFileResponse } from 'C/types/api';
 
 import { useDragAndDrop } from '.';
 
@@ -11,7 +11,7 @@ export interface FileUploaderOptions {
   maxAllowedFiles?: number;
   acceptedFileTypes?: string; // Comma-separated list of allowed file types
   maxTotalSize?: number; // in bytes
-  onUploadComplete?: (files: UploadResponse[]) => void;
+  onUploadComplete?: () => void;
 }
 
 export interface UseFileUploaderReturn {
@@ -69,9 +69,7 @@ const useFileUploader = ({
       }
 
       setFiles(fileArray);
-      const uploadResponses: UploadResponse[] = [];
-
-
+      const uploadResponses: UploadedFileResponse[] = [];
 
       try {
         for (const file of fileArray) {
@@ -82,7 +80,7 @@ const useFileUploader = ({
           uploadResponses.push(response);
         }
         if (onUploadComplete) {
-          onUploadComplete(uploadResponses);
+          onUploadComplete();
         }
       } catch (uploadError) {
         const errorMessage = parseUploadError(uploadError);
