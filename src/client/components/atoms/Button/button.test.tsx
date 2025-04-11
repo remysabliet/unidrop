@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
+
 import { Button } from "./Button";
 
 describe("Button Component", () => {
@@ -58,11 +60,11 @@ describe("Button Component", () => {
     expect(button).toHaveTextContent(/loading/i);
   });
 
-  it("calls the onClick handler when clicked", () => {
+  it("calls the onClick handler when clicked", async () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Click Me</Button>);
     const button = screen.getByRole("button", { name: /click me/i });
-    fireEvent.click(button);
+    await userEvent.click(button);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 

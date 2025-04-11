@@ -42,10 +42,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={cn(baseStyles, variantStyles[variant], sizeStyles[size], className)}
         ref={ref}
-        disabled={loading || props.disabled} // Disable button if loading
+        disabled={loading || props.disabled}
         {...props}
       >
-        {loading && <span className="loader mr-2" />} {/* Loader for loading state */}
+        {loading && <span className="loader mr-2" />}
         {icon && iconPosition === "left" && <span className="mr-2">{icon}</span>}
         {children}
         {icon && iconPosition === "right" && <span className="ml-2">{icon}</span>}
