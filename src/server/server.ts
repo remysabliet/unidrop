@@ -43,6 +43,7 @@ app.use(bodyParser.json());
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 app.post('/api/upload-single', upload.single('file'), async (req, res) => {
+
     if (!req.file) {
         return res.status(400).json({ error: 'Missing required `file` key in body.' });
     }
