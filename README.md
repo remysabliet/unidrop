@@ -1,32 +1,35 @@
 # Task Boilerplate
 
-This is a simple boilerplate for the frontend task. You are free to use it and modify it to your needs.
+## Introduction
 
-## Room for Improvements (Rémy SABLIET)
+`unidrop` is a simple file upload service built with a modern web development stack. Below is an overview of the key technologies and tools used in the project:
 
-- Enhance the UploadFile component design by adding a circular progress indicator that visually wraps around the entire component and fills according to the upload progress.
+---
 
-- Add a "Cancel Upload" button to allow users to interrupt an ongoing upload.
+## Stack Overview
 
-- Improve error handling:
+### **Frontend**
+- **React**: A JavaScript library for building user interfaces, used to create the client-side components of the application.
+- **Tailwind CSS**: A utility-first CSS framework for styling, with `tailwind-merge` used to handle class merging.
+- **Vite**: A fast build tool and development server, used for bundling and serving the frontend.
 
-    - Clearly differentiate between network errors, server-side errors, and chunk merge errors.
+### **Backend**
+- **Express**: A minimal and flexible Node.js web application framework, used to handle server-side logic and API endpoints.
+- **Multer**: A middleware for handling file uploads in Node.js.
+- **Body Parser**: Middleware for parsing incoming request bodies in a middleware chain.
 
-    - Display helpful messages to users.
+### **TypeScript**
+- **TypeScript**: A strongly typed programming language that builds on JavaScript, used throughout the project for type safety and better developer experience.
 
-- Implement an upload timeout mechanism for uploads taking too long (based on requirements).
+### **Testing**
+- **Vitest**: A fast unit testing framework, used for both client-side and server-side tests.
+- **Testing Library**: A set of utilities for testing React components, focusing on user interactions and DOM assertions.
 
-- Add file extension validation to prevent unsupported formats.
+### **Development Tools**
+- **ESLint**: A tool for identifying and fixing problems in JavaScript/TypeScript code.
+- **Prettier**: A code formatter to ensure consistent code style.
+- **Nodemon**: A tool for automatically restarting the server during development when file changes are detected.
 
-- Automatically sanitize filenames to prevent unsafe or invalid file names.
-
-- On the server side, implement:
-
-    - More robust error handling
-
-    - File validation: filename sanitization, antivirus scanning, max file size check, etc.
-
-- Add end to end test (Cypress)
 
 ## Installation
 
@@ -91,3 +94,28 @@ The boilerplate provides Tailwind CSS by default. If you want to use something e
 
 Vitest is provided by default for testing, however you are free to use whatever you like and are familiar with.
 
+## Room for Improvements (Rémy SABLIET)
+
+- Enhance the UploadFile component design by adding a circular progress indicator that visually wraps around the entire component and fills according to the upload progress.
+
+- Add a "Cancel Upload" button to allow users to interrupt an ongoing upload.
+
+- Improve error handling:
+
+    - Clearly differentiate between network errors, server-side errors, and chunk merge errors.
+
+    - Display helpful messages to users.
+
+- Implement an upload timeout mechanism for uploads taking too long (based on requirements).
+
+- Add file extension validation to prevent unsupported formats.
+
+- Automatically sanitize filenames to prevent unsafe or invalid file names.
+
+- On the server side, implement:
+
+    - More robust error handling
+
+    - File validation: filename sanitization, antivirus scanning, max file size check, etc.
+
+- Add end to end test (Cypress)

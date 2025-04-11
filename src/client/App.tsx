@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { ReactElement } from 'react';
+
+import { Modal } from 'C/components/molecules/Moldal/Modal';
 import { UploadPage } from 'C/components/templates/UploadPage';
-import { Modal } from '@/client/components/molecules/Moldal/Modal';
 
 export const App = (): ReactElement => {
-    // Control state for toggling the upload modal overlay
     const [isUploadModalOpen, setIsUploadModalOpen] = useState<boolean>(false);
 
     return (
         <main className="relative isolate h-dvh text-white">
-            {/* Background Image */}
+
             <img
                 src="https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoid2VhcmVcL2FjY291bnRzXC82ZVwvNDAwMDM4OFwvcHJvamVjdHNcLzk4NFwvYXNzZXRzXC9iOFwvMTE1MjY1XC8xMjYwMTU0YzFhYmVmMDVjNjZlY2Q2MDdmMTRhZTkxNS0xNjM4MjU4MjQwLmpwZyJ9:weare:_kpZgwnGPTxOhYxIyfS1MhuZmxGrFCzP6ZW6dc-F6BQ?width=2400"
                 alt="background image"
@@ -17,10 +17,8 @@ export const App = (): ReactElement => {
                 className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
             />
 
-            {/* Dark overlay */}
             <div className="absolute inset-0 -z-10 bg-black/60" />
 
-            {/* Content */}
             <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
                 <h1 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl">
                     Hello there
@@ -36,7 +34,6 @@ export const App = (): ReactElement => {
                 </button>
             </div>
 
-            {/* Modal */}
             <Modal isOpen={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)}>
                 <UploadPage />
             </Modal>
