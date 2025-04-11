@@ -13,7 +13,8 @@ export default defineWorkspace([
       setupFiles: ['./configs/tests/client/vitest-client-setup.ts'],
       include: ['src/client/**/*.test.ts', 'src/client/**/*.test.tsx'],
     },
-  }, {
+  }
+  , {
     extends: './vitest.config.base.ts',
     test: {
       name: 'server',

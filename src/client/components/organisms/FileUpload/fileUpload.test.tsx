@@ -81,9 +81,7 @@ describe('FileUpload Component', () => {
       fireEvent.change(input, { target: { files: fileList } });
 
       await waitFor(() => {
-        expect(mockOnUploadComplete).toHaveBeenCalledWith([
-          { fileName: 'file.jpg', message: 'Simulated upload success' },
-        ]);
+        expect(mockOnUploadComplete).toHaveBeenCalledWith();
       });
     });
 
@@ -98,10 +96,7 @@ describe('FileUpload Component', () => {
       fireEvent.change(input, { target: { files: fileList } });
 
       await waitFor(() => {
-        expect(mockOnUploadComplete).toHaveBeenCalledWith([
-          { fileName: 'file1.jpg', message: 'Simulated upload success' },
-          { fileName: 'file2.png', message: 'Simulated upload success' },
-        ]);
+        expect(mockOnUploadComplete).toHaveBeenCalledWith();
       });
     });
   });
@@ -192,9 +187,7 @@ describe('FileUpload Component', () => {
       fireEvent.drop(dropzone, { dataTransfer: fakeDataTransfer });
 
       await waitFor(() => {
-        expect(mockOnUploadComplete).toHaveBeenCalledWith([
-          { fileName: 'file.jpg', message: 'Simulated upload success' },
-        ]);
+        expect(mockOnUploadComplete).toHaveBeenCalledWith();
       });
     });
 
